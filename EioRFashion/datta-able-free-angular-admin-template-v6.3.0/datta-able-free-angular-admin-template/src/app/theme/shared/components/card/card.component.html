@@ -1,0 +1,73 @@
+<div class="card" [ngClass]="cardClass" [@cardRemove]="cardRemove" #toAnimate>
+  @if (!hidHeader) {
+    <div class="card-header" [ngClass]="headerClass()">
+      @if (!customHeader) {
+        <h5>{{ cardTitle }}</h5>
+      }
+      @if (this.options && !customHeader) {
+        <div class="card-header-right">
+          <div class="btn-group card-option" ngbDropdown placement="bottom-right">
+            <button type="button" class="btn dropdown-toggle btn-icon" ngbDropdownToggle>
+              <i class="feather icon-more-horizontal"></i>
+            </button>
+            <ul class="list-unstyled card-option dropdown-menu-right" ngbDropdownMenu>
+              <li
+                ngbDropdownItem
+                class="full-card"
+                (click)="fullCardToggle(toAnimate, '', true)"
+                role="none"
+                (keypress)="fullCardToggle(toAnimate, '', true)"
+              >
+                <a href="javascript:void(0)">
+                  <span>
+                    <i class="feather" [ngClass]="fullIcon"></i>
+                    {{ this.cardClass === 'full-card' ? 'Restore' : 'Maximize' }}
+                  </span>
+                </a>
+              </li>
+              <li ngbDropdownItem class="minimize-card" (click)="collapsedCardToggle()" role="none" (keypress)="collapsedCardToggle()">
+                <a href="javascript:void(0)">
+                  <span>
+                    <i class="feather" [ngClass]="collapsedIcon"></i>
+                    {{ this.collapsedCard === 'collapsed' ? 'Expand' : 'Collapse' }}
+                  </span>
+                  <span style="display: none"><i class="feather icon-plus"></i></span>
+                </a>
+              </li>
+              <li ngbDropdownItem class="reload-card" (click)="cardRefresh()" role="none" (keypress)="cardRefresh()">
+                <a href="javascript:void(0)">
+                  <i class="feather icon-refresh-cw"></i>
+                  Reload
+                </a>
+              </li>
+              <li ngbDropdownItem class="close-card" (click)="cardRemoveAction()" role="none" (keypress)="cardRemoveAction()">
+                <a href="javascript:void(0)">
+                  <i class="feather icon-trash"></i>
+                  Remove
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      }
+      @if (customHeader) {
+        <ng-content select=".app-card-header"></ng-content>
+      }
+    </div>
+  }
+  <div [@collapsedCard]="collapsedCard">
+    <div class="card-block" [ngClass]="blockClass()">
+      <ng-content></ng-content>
+    </div>
+    @if (footerTemplate()) {
+      <div class="card-footer" [ngClass]="footerClass()">
+        <ng-container *ngTemplateOutlet="footerTemplate()"></ng-container>
+      </div>
+    }
+  </div>
+  @if (loadCard) {
+    <div class="card-loader">
+      <i class="pct-loader1 anim-rotate"></i>
+    </div>
+  }
+</div>

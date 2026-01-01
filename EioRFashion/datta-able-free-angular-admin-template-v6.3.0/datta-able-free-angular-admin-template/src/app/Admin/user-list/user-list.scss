@@ -1,0 +1,73 @@
+.container {
+  padding: 20px;
+  background: #f9f9f9;
+  position: relative; /* Required for absolute positioning of button */
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #2c3e50;
+  color: white;
+  font-weight: 600;
+}
+
+tr:hover {
+  background-color: #f1f1f1;
+}
+
+.no-data {
+  text-align: center;
+  font-style: italic;
+  color: #777;
+}
+
+/* ---------- Save New User Button ---------- */
+
+.save-btn {
+  position: absolute;
+  top: 10px;      /* slightly above */
+  right: 20px;    /* right corner */
+  padding: 10px 18px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  color: white;
+
+  background: linear-gradient(135deg, #8e004f, #6a0dad); /* Deep magenta → purple */
+}
+
+.save-btn:hover {
+  opacity: 0.9;
+}
+.search-box {
+  width: 300px;
+  padding: 10px;
+  margin: 15px 0;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  outline: none;
+  font-size: 14px;
+}
+
+.search-box:focus {
+  border-color: #6a0dad;
+}
